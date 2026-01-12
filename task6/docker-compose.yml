@@ -1,0 +1,19 @@
+services:
+  back-end:
+    build: ./back-end
+    image: softy-pinko-back-end:task6
+    deploy:
+      replicas: 2
+
+  front-end:
+    build: ./front-end
+    image: softy-pinko-front-end:task6
+
+  proxy:
+    build: ./proxy
+    image: softy-pinko-proxy:task6
+    ports:
+      - "80:80"
+    depends_on:
+      - back-end
+      - front-end
